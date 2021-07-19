@@ -1,11 +1,11 @@
 language: python
-python:
-  - 3.6
+python: 3.6
+  #- 3.6
   #- 3.7
   #- 3.8
   #- 3.9
 arch:
-  #- amd64
+  - amd64
   - arm64
 
 before_install:
@@ -25,51 +25,6 @@ script:
   - python3 -m pip install pytest
   - python3 -m cibuildwheel --output-dir ./wheelhouse
   - ls wheelhouse
-
-stages:
-  - test
-  - name: deploy
-    if: tag IS PRESENT AND repo = moderngl/moderngl
-
-jobs:
-  include:
-  - os: windows
-    language: shell
-    name: Test on Windows
-    
-  - os: osx
-    language: shell
-    name: Test on MacOS
-    
-  - stage: deploy
-    services: docker
-    install: python3 -m pip install twine cibuildwheel
-    script:
-    - python3 -m cibuildwheel --output-dir ./wheelhouse
-    - python3 setup.py sdist -d ./wheelhouse
-    - ls wheelhouse
-    after_success: |
-      if [[ $TRAVIS_TAG ]]; then python3 -m pip install twine; python3 -m twine upload --skip-existing wheelhouse/*.whl; fi
-  - stage: deploy
-    os: osx
-    language: shell
-    install: python3 -m pip install twine cibuildwheel
-    script:
-    - python3 -m cibuildwheel --output-dir ./wheelhouse
-    - ls wheelhouse
-    after_success: |
-      if [[ $TRAVIS_TAG ]]; then python3 -m pip install twine; python3 -m twine upload --skip-existing wheelhouse/*.whl; fi
-  
-  - stage: deploy
-    os: windows
-    language: shell
-    install: python3 -m pip install twine cibuildwheel
-    script:
-    - python3 -m cibuildwheel --output-dir ./wheelhouse
-    - ls wheelhouse
-    after_success: |
-      if [[ $TRAVIS_TAG ]]; then python3 -m pip install twine; python3 -m twine upload --skip-existing wheelhouse/*.whl; fi
-
 
 deploy:
   provider: releases
