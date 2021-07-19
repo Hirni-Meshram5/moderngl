@@ -37,7 +37,7 @@ jobs:
     name: Test on MacOS
     
   - os: linux
-    arch: arm64-graviton2
+    arch: arm64-graviton
     group: edge
     dist: focal
     virt: vm
@@ -76,7 +76,7 @@ jobs:
       
   - stage: deploy
     os: linux
-    arch: arm64-graviton2
+    arch: arm64-graviton
     group: edge
     dist: focal
     virt: vm
