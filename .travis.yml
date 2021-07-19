@@ -37,7 +37,10 @@ jobs:
     name: Test on MacOS
     
   - os: linux
-    arch: arm64
+    arch: arm64-graviton2
+    group: edge
+    dist: focal
+    virt: vm
     language: python
     python: 3.8
     name: Test on Linux for aarch64
@@ -73,7 +76,10 @@ jobs:
       
   - stage: deploy
     os: linux
-    arch: arm64
+    arch: arm64-graviton2
+    group: edge
+    dist: focal
+    virt: vm
     language: python
     python: 3.8
     install: python3 -m pip install twine cibuildwheel
