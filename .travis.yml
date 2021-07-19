@@ -38,7 +38,8 @@ jobs:
     
   - os: linux
     arch: arm64
-    language: shell
+    language: python
+    python: 3.8
     name: Test on Linux for aarch64
     
   - stage: deploy
@@ -73,7 +74,8 @@ jobs:
   - stage: deploy
     os: linux
     arch: arm64
-    language: shell
+    language: python
+    python: 3.8
     install: python3 -m pip install twine cibuildwheel
     script:
     - python3 -m cibuildwheel --output-dir ./wheelhouse
