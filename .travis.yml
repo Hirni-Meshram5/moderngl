@@ -15,7 +15,7 @@ before_install:
     fi
 
 install:
-- python -m pip install twine cibuildwheel
+- python3 -m pip install twine cibuildwheel
 
 script:
   - python3 setup.py install
