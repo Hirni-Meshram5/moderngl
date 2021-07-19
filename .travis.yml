@@ -24,7 +24,7 @@ script:
 stages:
   - test
   - name: deploy
-    if: tag IS PRESENT AND repo = moderngl/moderngl
+    #if: tag IS PRESENT AND repo = moderngl/moderngl
 
 jobs:
   include:
